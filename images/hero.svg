@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" width="1600" height="800" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f9ff"/>
+      <stop offset="0.5" stop-color="#f4f0ff"/>
+      <stop offset="1" stop-color="#ecf8fb"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4b2fd6"/>
+      <stop offset="0.55" stop-color="#7b3fe4"/>
+      <stop offset="1" stop-color="#0f9bc4"/>
+    </linearGradient>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#06b6d4"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ec4899"/><stop offset="1" stop-color="#f97316"/></linearGradient>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#10b981"/><stop offset="1" stop-color="#14b8a6"/></linearGradient>
+    <linearGradient id="flow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#06b6d4"/><stop offset="0.5" stop-color="#7c3aed"/><stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f1ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#4b2fd6" flood-opacity="0.12"/>
+    </filter>
+    <marker id="head" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L12,6 L0,12 L3,6 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="headc" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L12,6 L0,12 L3,6 z" fill="#0ea5c6"/>
+    </marker>
+    <radialGradient id="b1"><stop offset="0" stop-color="#c7d2fe" stop-opacity="0.75"/><stop offset="1" stop-color="#c7d2fe" stop-opacity="0"/></radialGradient><radialGradient id="b2"><stop offset="0" stop-color="#a5f3fc" stop-opacity="0.75"/><stop offset="1" stop-color="#a5f3fc" stop-opacity="0"/></radialGradient><radialGradient id="b3"><stop offset="0" stop-color="#e9d5ff" stop-opacity="0.75"/><stop offset="1" stop-color="#e9d5ff" stop-opacity="0"/></radialGradient><radialGradient id="b4"><stop offset="0" stop-color="#fbcfe8" stop-opacity="0.75"/><stop offset="1" stop-color="#fbcfe8" stop-opacity="0"/></radialGradient>
+  </defs>
+
+  <!-- background with soft colour blobs -->
+  <rect width="1600" height="800" rx="28" fill="url(#bg)"/>
+  <g><circle cx="140" cy="120" r="230" fill="url(#b1)"/><circle cx="1480" cy="110" r="220" fill="url(#b2)"/><circle cx="820" cy="780" r="280" fill="url(#b3)"/><circle cx="1500" cy="720" r="210" fill="url(#b4)"/></g>
+
+  <!-- title -->
+  <text x="800" y="86" text-anchor="middle" font-size="50" font-weight="800" fill="url(#title)">InternVL3.5 · Live Multimodal Video QA</text>
+  <text x="800" y="128" text-anchor="middle" font-size="21" fill="#5b5f7e" letter-spacing="0.5">videos · images · text · speech  —  one model, answers in text and voice</text>
+
+  <!-- ================= connectors ================= -->
+  <!-- visual inputs bypass the speech stage, straight into the model -->
+  <path d="M300,300 C330,206 600,192 618,286" stroke="#0ea5c6" stroke-width="4" fill="none" stroke-dasharray="2 9" stroke-linecap="round" marker-end="url(#headc)"/>
+  <rect x="384" y="181" width="196" height="30" rx="15" fill="#ffffff" stroke="#bae6fd"/>
+  <text x="482" y="201" text-anchor="middle" font-size="14" font-weight="600" fill="#0e7490">frames · images · text</text>
+  <!-- main flow -->
+  <path d="M300,500 L344,500" stroke="url(#flow)" stroke-width="5" stroke-linecap="round" marker-end="url(#head)"/>
+  <path d="M570,420 L614,420" stroke="url(#flow)" stroke-width="5" stroke-linecap="round" marker-end="url(#head)"/>
+  <path d="M1040,420 L1084,420" stroke="url(#flow)" stroke-width="5" stroke-linecap="round" marker-end="url(#head)"/>
+  <path d="M1300,420 L1344,420" stroke="url(#flow)" stroke-width="5" stroke-linecap="round" marker-end="url(#head)"/>
+
+  <!-- ================= 01 INPUT ================= -->
+  <g filter="url(#shadow)"><rect x="50" y="230" width="250" height="380" rx="24" fill="#ffffff"/></g>
+  <path d="M50,254 a24,24 0 0 1 24,-24 h202 a24,24 0 0 1 24,24 v26 h-250 z" fill="url(#g1)"/>
+  <text x="74" y="263" font-size="15" font-weight="800" fill="#ffffff" letter-spacing="1.5">01 · INPUT</text>
+  <g font-size="17" font-weight="600" fill="#1e293b">
+    <!-- camera -->
+    <rect x="72" y="300" width="44" height="44" rx="12" fill="#e0f2fe"/>
+    <rect x="81" y="312" width="22" height="18" rx="4" fill="none" stroke="#0284c7" stroke-width="2.4"/>
+    <path d="M103,317 l8,-4 v18 l-8,-4 z" fill="#0284c7"/>
+    <text x="130" y="328">Live camera</text>
+    <!-- image -->
+    <rect x="72" y="360" width="44" height="44" rx="12" fill="#dcfce7"/>
+    <rect x="82" y="370" width="24" height="24" rx="4" fill="none" stroke="#16a34a" stroke-width="2.4"/>
+    <path d="M84,392 l7,-9 l5,6 l4,-4 l5,7 z" fill="#16a34a"/>
+    <circle cx="99" cy="377" r="2.6" fill="#16a34a"/>
+    <text x="130" y="388">Image</text>
+    <!-- video -->
+    <rect x="72" y="420" width="44" height="44" rx="12" fill="#ffedd5"/>
+    <rect x="80" y="430" width="28" height="24" rx="4" fill="none" stroke="#ea580c" stroke-width="2.4"/>
+    <path d="M90,436 v12 l10,-6 z" fill="#ea580c"/>
+    <text x="130" y="448">Video file</text>
+    <!-- text -->
+    <rect x="72" y="480" width="44" height="44" rx="12" fill="#fce7f3"/>
+    <path d="M82,490 h24 a3,3 0 0 1 3,3 v12 a3,3 0 0 1 -3,3 h-14 l-6,6 v-6 h-4 a3,3 0 0 1 -3,-3 v-12 a3,3 0 0 1 3,-3 z" fill="none" stroke="#db2777" stroke-width="2.4" stroke-linejoin="round"/>
+    <text x="130" y="508">Typed question</text>
+    <!-- voice -->
+    <rect x="72" y="540" width="44" height="44" rx="12" fill="#ede9fe"/>
+    <rect x="88" y="548" width="12" height="20" rx="6" fill="#7c3aed"/>
+    <path d="M83,562 a11,11 0 0 0 22,0 M94,573 v5" fill="none" stroke="#7c3aed" stroke-width="2.4" stroke-linecap="round"/>
+    <text x="130" y="568">Voice</text>
+    <text x="130" y="586" font-size="13" font-weight="500" fill="#6d28d9">hands-free</text>
+  </g>
+
+  <!-- ================= 02 HEAR ================= -->
+  <g filter="url(#shadow)"><rect x="350" y="280" width="220" height="330" rx="24" fill="#ffffff"/></g>
+  <path d="M350,304 a24,24 0 0 1 24,-24 h172 a24,24 0 0 1 24,24 v26 h-220 z" fill="url(#g2)"/>
+  <text x="374" y="313" font-size="15" font-weight="800" fill="#ffffff" letter-spacing="1.5">02 · HEAR</text>
+  <!-- waveform -->
+  <g fill="#a78bfa">
+    <rect x="392" y="372" width="6" height="16" rx="3"/><rect x="404" y="364" width="6" height="32" rx="3"/>
+    <rect x="416" y="356" width="6" height="48" rx="3"/><rect x="428" y="366" width="6" height="28" rx="3"/>
+    <rect x="440" y="360" width="6" height="40" rx="3"/><rect x="452" y="370" width="6" height="20" rx="3"/>
+    <rect x="464" y="362" width="6" height="36" rx="3"/><rect x="476" y="372" width="6" height="16" rx="3"/>
+    <rect x="488" y="367" width="6" height="26" rx="3"/><rect x="500" y="374" width="6" height="12" rx="3"/>
+    <rect x="512" y="370" width="6" height="20" rx="3"/><rect x="524" y="376" width="6" height="8" rx="3"/>
+  </g>
+  <rect x="372" y="424" width="176" height="62" rx="14" fill="#f5f3ff"/>
+  <text x="460" y="451" text-anchor="middle" font-size="17" font-weight="700" fill="#5b21b6">Silero VAD</text>
+  <text x="460" y="473" text-anchor="middle" font-size="13" fill="#6b6894">auto-cuts on a pause</text>
+  <path d="M460,488 v14" stroke="#a78bfa" stroke-width="2.4" marker-end="url(#head)"/>
+  <rect x="372" y="508" width="176" height="78" rx="14" fill="#f5f3ff"/>
+  <text x="460" y="536" text-anchor="middle" font-size="17" font-weight="700" fill="#5b21b6">Nemotron ASR</text>
+  <text x="460" y="557" text-anchor="middle" font-size="13" fill="#6b6894">NVIDIA · 0.6B · streaming</text>
+  <text x="460" y="576" text-anchor="middle" font-size="13" font-weight="700" fill="#7c3aed">59 ms</text>
+
+  <!-- ================= 03 SEE & REASON ================= -->
+  <g filter="url(#shadow)"><rect x="620" y="230" width="420" height="380" rx="26" fill="url(#core)" stroke="#ddd6fe" stroke-width="1.5"/></g>
+  <path d="M620,256 a26,26 0 0 1 26,-26 h368 a26,26 0 0 1 26,26 v24 h-420 z" fill="url(#g3)"/>
+  <text x="646" y="263" font-size="15" font-weight="800" fill="#ffffff" letter-spacing="1.5">03 · SEE &amp; REASON</text>
+  <text x="830" y="318" text-anchor="middle" font-size="30" font-weight="800" fill="#312e81">InternVL3.5-8B</text>
+  <text x="830" y="342" text-anchor="middle" font-size="14" fill="#6b6894" letter-spacing="0.5">ViT  →  MLP  →  LLM</text>
+  <g font-size="16">
+    <rect x="650" y="360" width="360" height="54" rx="14" fill="#e0e7ff"/>
+    <text x="672" y="392" font-weight="700" fill="#3730a3">InternViT-300M</text>
+    <text x="988" y="392" text-anchor="end" font-size="13" fill="#5b5f9e">frame → 1,024 tokens</text>
+    <rect x="650" y="424" width="360" height="54" rx="14" fill="#ede9fe"/>
+    <text x="672" y="456" font-weight="700" fill="#5b21b6">Pixel shuffle + MLP</text>
+    <text x="988" y="456" text-anchor="end" font-size="13" fill="#6b5f9e">→ 256 tokens / frame</text>
+    <rect x="650" y="488" width="360" height="54" rx="14" fill="#fae8ff"/>
+    <text x="672" y="520" font-weight="700" fill="#86198f">Qwen3-8B<tspan font-weight="500" fill="#8a5a92">  +  MonteCLoRA adapter</tspan></text>
+  </g>
+  <g font-size="13" font-weight="600">
+    <rect x="650" y="558" width="108" height="32" rx="16" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="704" y="579" text-anchor="middle" fill="#4c1d95">Cascade RL</text>
+    <rect x="768" y="558" width="124" height="32" rx="16" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="830" y="579" text-anchor="middle" fill="#4c1d95">8 frames</text>
+    <rect x="902" y="558" width="108" height="32" rx="16" fill="#4f46e5"/>
+    <text x="956" y="579" text-anchor="middle" fill="#ffffff">1.1 s</text>
+  </g>
+
+  <!-- ================= 04 SPEAK ================= -->
+  <g filter="url(#shadow)"><rect x="1090" y="280" width="210" height="330" rx="24" fill="#ffffff"/></g>
+  <path d="M1090,304 a24,24 0 0 1 24,-24 h162 a24,24 0 0 1 24,24 v26 h-210 z" fill="url(#g4)"/>
+  <text x="1114" y="313" font-size="15" font-weight="800" fill="#ffffff" letter-spacing="1.5">04 · SPEAK</text>
+  <!-- speaker icon -->
+  <path d="M1160,366 h14 l18,-15 v58 l-18,-15 h-14 z" fill="#f472b6"/>
+  <path d="M1202,368 a16,16 0 0 1 0,24 M1210,360 a27,27 0 0 1 0,40" fill="none" stroke="#fb923c" stroke-width="3" stroke-linecap="round"/>
+  <rect x="1110" y="430" width="170" height="78" rx="14" fill="#fff1f2"/>
+  <text x="1195" y="458" text-anchor="middle" font-size="17" font-weight="700" fill="#be185d">Magpie TTS</text>
+  <text x="1195" y="479" text-anchor="middle" font-size="13" fill="#8a5a72">NVIDIA · 357M · GPU</text>
+  <text x="1195" y="498" text-anchor="middle" font-size="13" font-weight="700" fill="#db2777">0.9 s</text>
+  <text x="1195" y="540" text-anchor="middle" font-size="13" fill="#6b6f8c">mic auto-mutes</text>
+  <text x="1195" y="558" text-anchor="middle" font-size="13" fill="#6b6f8c">while it speaks</text>
+  <text x="1195" y="588" text-anchor="middle" font-size="12" fill="#9a9db5">Kokoro-82M on CPU</text>
+
+  <!-- ================= 05 ANSWER ================= -->
+  <g filter="url(#shadow)"><rect x="1350" y="280" width="200" height="330" rx="24" fill="#ffffff"/></g>
+  <path d="M1350,304 a24,24 0 0 1 24,-24 h152 a24,24 0 0 1 24,24 v26 h-200 z" fill="url(#g5)"/>
+  <text x="1374" y="313" font-size="15" font-weight="800" fill="#ffffff" letter-spacing="1.5">05 · ANSWER</text>
+  <!-- chat bubble with answer -->
+  <path d="M1372,362 h156 a14,14 0 0 1 14,14 v40 a14,14 0 0 1 -14,14 h-112 l-16,16 v-16 h-28 a14,14 0 0 1 -14,-14 v-40 a14,14 0 0 1 14,-14 z" fill="#d1fae5"/>
+  <text x="1450" y="402" text-anchor="middle" font-size="19" font-weight="700" fill="#047857">“change tire”</text>
+  <text x="1450" y="478" text-anchor="middle" font-size="15" font-weight="600" fill="#1e293b">text  +  voice</text>
+  <g fill="#34d399">
+    <rect x="1394" y="500" width="5" height="14" rx="2.5"/><rect x="1404" y="494" width="5" height="26" rx="2.5"/>
+    <rect x="1414" y="488" width="5" height="38" rx="2.5"/><rect x="1424" y="496" width="5" height="22" rx="2.5"/>
+    <rect x="1434" y="490" width="5" height="34" rx="2.5"/><rect x="1444" y="498" width="5" height="18" rx="2.5"/>
+    <rect x="1454" y="492" width="5" height="30" rx="2.5"/><rect x="1464" y="500" width="5" height="14" rx="2.5"/>
+    <rect x="1474" y="495" width="5" height="24" rx="2.5"/><rect x="1484" y="502" width="5" height="10" rx="2.5"/>
+    <rect x="1494" y="498" width="5" height="18" rx="2.5"/>
+  </g>
+  <text x="1450" y="560" text-anchor="middle" font-size="13" fill="#6b6f8c">+ the 8 frames</text>
+  <text x="1450" y="578" text-anchor="middle" font-size="13" fill="#6b6f8c">the model saw</text>
+
+  <!-- ================= headline numbers ================= -->
+  <g font-size="16">
+    <g filter="url(#shadow)">
+      <rect x="110" y="660" width="290" height="64" rx="32" fill="#ffffff"/>
+      <rect x="420" y="660" width="250" height="64" rx="32" fill="#ffffff"/>
+      <rect x="690" y="660" width="260" height="64" rx="32" fill="#ffffff"/>
+      <rect x="970" y="660" width="250" height="64" rx="32" fill="#ffffff"/>
+      <rect x="1240" y="660" width="250" height="64" rx="32" fill="#ffffff"/>
+    </g>
+    <text x="220" y="699" text-anchor="end" font-weight="800" fill="#4f46e5">~2.9 s</text><text x="230" y="699" text-anchor="start" fill="#475569">voice → voice</text>
+    <text x="517" y="699" text-anchor="end" font-weight="800" fill="#0891b2">1× A40</text><text x="527" y="699" text-anchor="start" fill="#475569">single GPU</text>
+    <text x="780" y="699" text-anchor="end" font-weight="800" fill="#7c3aed">2,048</text><text x="790" y="699" text-anchor="start" fill="#475569">visual tokens</text>
+    <text x="1050" y="699" text-anchor="end" font-weight="800" fill="#db2777">7.7M</text><text x="1060" y="699" text-anchor="start" fill="#475569">trained params</text>
+    <text x="1320" y="699" text-anchor="end" font-weight="800" fill="#059669">9</text><text x="1330" y="699" text-anchor="start" fill="#475569">PEFT methods</text>
+  </g>
+  <text x="800" y="766" text-anchor="middle" font-size="14" fill="#8b8fa8">InternVL3.5 · NVIDIA Nemotron Speech · Silero VAD · Gradio</text>
+</svg>

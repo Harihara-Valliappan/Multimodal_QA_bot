@@ -1,0 +1,29 @@
+# Installed by scripts/setup_env.sh into ./.venv
+#
+# torch/torchvision come from the cu128 index (see setup_env.sh); the
+# cluster driver is 570.x with CUDA 12.8, so cu128 wheels match exactly.
+torch==2.8.0
+torchvision==0.23.0
+
+# Model + adaptation stack. InternVL3.5 needs a recent transformers; peft
+# >= 0.9 is where use_dora exists, and we verify it at runtime anyway.
+transformers==4.55.2
+peft==0.21.2          # 0.17.0 for the first LoRA/DoRA runs; 0.21 adds the LoRA variants (generations verified identical)
+accelerate==1.10.0
+huggingface_hub==0.34.4
+datasets==4.0.0
+sentencepiece==0.2.0
+timm==1.0.19
+einops==0.8.1
+
+# Video decoding. decord is the fast path; av/opencv are fallbacks and
+# are also used to validate clips during the manifest build.
+decord==0.6.0
+av==14.2.0            # 14.4.0 ships no manylinux wheel for cp312; do not bump without checking
+opencv-python-headless==4.12.0.88
+
+# Plumbing
+pyyaml==6.0.2
+numpy==2.2.6
+pandas==2.3.1
+tqdm==4.67.1

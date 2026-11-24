@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "videoqa-internvl-dora"
+version = "0.1.0"
+description = "Live multimodal video QA: InternVL3.5 + NVIDIA Nemotron speech, with PEFT fine-tuning experiments (LoRA, DoRA, MonteCLoRA, ...)"
+requires-python = ">=3.10"
+dependencies = []          # pinned in requirements.txt, installed separately
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

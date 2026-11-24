@@ -1,0 +1,31 @@
+# environments
+.venv/
+.venv-app/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# large or generated artifacts: code and configs are versioned, data and weights are not
+data/
+hf_cache/
+checkpoints/
+models/
+logs/
+reports/
+!reports/.gitkeep
+
+# local scratch and audio test clips
+.dev/
+*.wav
+
+# never commit credentials (the app's password lives in ~/.config/videoqa-app/auth, outside the repo)
+.env
+
+# editor / OS / job output
+.vscode/
+.idea/
+.DS_Store
+*.log
+*.out

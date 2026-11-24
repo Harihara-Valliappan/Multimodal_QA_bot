@@ -1,0 +1,91 @@
+# A6: plain LoRA retrained under PEFT 0.21, learning rate 1.0e-4.
+#
+# Version-matched baseline for every PEFT-0.21 arm, and a learning-rate
+# check: BD-LoRA / VeLoRA / SHiRA underfit at 2e-5. Selection on VAL only.
+#
+# (inherited header:)
+#
+# Derived from base.yaml by changing exactly two lines (use_dora and
+# allow_lora_control). If you need to change anything else, change it in
+# BOTH configs or the A2 comparison stops being a controlled one.
+
+experiment_name: a6_lora_peft021_lr1e4
+
+paths:
+  data_root: data
+  annotations_dir: data/activitynet_qa/annotations
+  videos_dir: data/activitynet_qa/videos
+  manifests_dir: data/manifests
+  reports_dir: reports
+  checkpoints_dir: checkpoints
+  hf_cache_dir: hf_cache
+
+model:
+  model_id: OpenGVLab/InternVL3_5-8B
+  # Pinned 2026-10-15 from the milestone-0 audit; change only deliberately.
+  revision: 9bb6a56ad9cc69db95e2d4eeb15a52bbcac4ef79
+  torch_dtype: bfloat16      # A40 is Ampere, so bf16 is safe
+  device_map: auto
+  trust_remote_code: true
+  attn_implementation: null  # set after confirming what the checkpoint supports
+  max_new_tokens: 32         # ActivityNet-QA answers are short
+  do_sample: false           # greedy: base vs adapted must be comparable
+
+video:
+  num_frames: 8              # conservative; profile before raising
+  max_tiles_per_frame: 1
+  input_size: 448
+  sampling: uniform
+  backend: decord
+  min_decodable_frames: 1
+
+dora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  # A2 control arm: plain LoRA at settings matched to the DoRA run.
+  # allow_lora_control is what permits use_dora: false at all -- without
+  # it the config layer refuses to load, so a LoRA run can never be
+  # mistaken for DoRA. Everything else below is identical to base.yaml,
+  # because the question is whether DoRA specifically helps, not whether
+  # some other hyperparameter does.
+  use_dora: false
+  allow_lora_control: true
+  bias: none
+  # null, not CAUSAL_LM: PeftModelForCausalLM injects inputs_embeds,
+  # which InternVLChatModel.forward() does not accept (it builds
+  # embeddings itself from pixel_values + image_flags).
+  task_type: null
+  # Verified against model.named_modules() in milestone 0, never assumed.
+  target_modules: [q_proj, v_proj]
+  freeze_vision_encoder: true
+  freeze_projector: true
+
+train:
+  seed: 42
+  learning_rate: 1.0e-4
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  gradient_checkpointing: true
+  logging_steps: 10
+  eval_steps: 150   # 2 validations across 300 steps
+  save_steps: 200
+  # 2400, not 3000: at the measured 5.9 s/example this run takes ~4.1 h
+  # end to end, inside the 6 h QOS cap with real margin. Gradient
+  # checkpointing cannot be traded away for speed -- without it the
+  # 2174-token sequences OOM at 43 GB (job 43716). Must be identical in
+  # base.yaml and lora_control.yaml or A2 stops being controlled.
+  max_train_samples: 2400
+  max_grad_norm: 1.0
+
+eval:
+  smoke_subset_size: 20
+  val_subset_size: 500
+  batch_size: 1
+  seed: 42
+  report_question_types: true
+  measure_latency: true

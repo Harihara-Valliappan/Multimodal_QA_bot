@@ -1,0 +1,79 @@
+# FALLBACK configuration: InternVL3.5-4B.
+#
+# Use only if the 8B default does not fit or is too slow in the queue.
+# Identical in every other respect, so the two are directly comparable.
+#
+# Baseline experiment configuration.
+#
+# Every value here is a *starting point* from the project brief, not a
+# tuned optimum. Anything changed for a run must be changed in a copy of
+# this file so the original run stays reproducible.
+
+experiment_name: a1_dora_internvl35_4b_fallback
+
+paths:
+  data_root: data
+  annotations_dir: data/activitynet_qa/annotations
+  videos_dir: data/activitynet_qa/videos
+  manifests_dir: data/manifests
+  reports_dir: reports
+  checkpoints_dir: checkpoints
+  hf_cache_dir: hf_cache
+
+model:
+  model_id: OpenGVLab/InternVL3_5-4B
+  # TODO(milestone-0): replace with the commit SHA printed by the audit.
+  revision: main
+  torch_dtype: bfloat16      # A40 is Ampere, so bf16 is safe
+  device_map: auto
+  trust_remote_code: true
+  attn_implementation: null  # set after confirming what the checkpoint supports
+  max_new_tokens: 32         # ActivityNet-QA answers are short
+  do_sample: false           # greedy: base vs adapted must be comparable
+
+video:
+  num_frames: 8              # conservative; profile before raising
+  max_tiles_per_frame: 1
+  input_size: 448
+  sampling: uniform
+  backend: decord
+  min_decodable_frames: 1
+
+dora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  use_dora: true             # non-negotiable for this experiment
+  bias: none
+  # null, not CAUSAL_LM: PeftModelForCausalLM injects inputs_embeds,
+  # which InternVLChatModel.forward() does not accept (it builds
+  # embeddings itself from pixel_values + image_flags).
+  task_type: null
+  # Verified against model.named_modules() in milestone 0, never assumed.
+  target_modules: [q_proj, v_proj]
+  freeze_vision_encoder: true
+  freeze_projector: true
+
+train:
+  seed: 42
+  learning_rate: 2.0e-5
+  num_train_epochs: 1.0
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 8
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  lr_scheduler_type: cosine
+  gradient_checkpointing: true
+  logging_steps: 10
+  eval_steps: 200
+  save_steps: 200
+  max_train_samples: 3000
+  max_grad_norm: 1.0
+
+eval:
+  smoke_subset_size: 20
+  val_subset_size: 500
+  batch_size: 1
+  seed: 42
+  report_question_types: true
+  measure_latency: true

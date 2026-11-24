@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f8ff"/>
+      <stop offset="0.55" stop-color="#f3f0ff"/>
+      <stop offset="1" stop-color="#eef8fb"/>
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef0ff"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3b2fb0"/>
+      <stop offset="1" stop-color="#0f8fb3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="7" flood-color="#5b4fd6" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b86b8"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="620" rx="22" fill="url(#bg)"/>
+
+  <!-- title -->
+  <text x="600" y="58" text-anchor="middle" font-size="34" font-weight="800" fill="url(#title)">InternVL3.5 · Live Multimodal Video QA</text>
+  <text x="600" y="90" text-anchor="middle" font-size="17" fill="#6b6f8c">videos · images · text · speech  →  answer in text and voice</text>
+
+  <!-- ===== inputs (left) ===== -->
+  <g font-size="15" fill="#2b2d42">
+    <g filter="url(#shadow)">
+      <rect x="40" y="130" width="250" height="70" rx="16" fill="#ffffff"/>
+      <rect x="40" y="218" width="250" height="56" rx="16" fill="#ffffff"/>
+      <rect x="40" y="292" width="250" height="56" rx="16" fill="#ffffff"/>
+      <rect x="40" y="366" width="250" height="56" rx="16" fill="#ffffff"/>
+      <rect x="40" y="440" width="250" height="110" rx="16" fill="#ffffff"/>
+    </g>
+    <rect x="40" y="130" width="6" height="70" rx="3" fill="#4f8cff"/>
+    <circle cx="68" cy="155" r="6" fill="#4f8cff"/><text x="82" y="160" font-weight="700">Live camera</text>
+    <text x="62" y="184" font-size="13" fill="#6b6f8c">rolling 8 s buffer → 8 frames</text>
+
+    <rect x="40" y="218" width="6" height="56" rx="3" fill="#22b07d"/>
+    <circle cx="68" cy="247" r="6" fill="#22b07d"/><text x="82" y="252" font-weight="700">Image</text>
+
+    <rect x="40" y="292" width="6" height="56" rx="3" fill="#f29a2e"/>
+    <circle cx="68" cy="321" r="6" fill="#f29a2e"/><text x="82" y="326" font-weight="700">Video file  <tspan font-size="13" font-weight="400" fill="#6b6f8c">8 sampled frames</tspan></text>
+
+    <rect x="40" y="366" width="6" height="56" rx="3" fill="#e0557e"/>
+    <circle cx="68" cy="395" r="6" fill="#e0557e"/><text x="82" y="400" font-weight="700">Typed question</text>
+
+    <rect x="40" y="440" width="6" height="110" rx="3" fill="#8a5cf6"/>
+    <circle cx="68" cy="465" r="6" fill="#8a5cf6"/><text x="82" y="470" font-weight="700">Voice (hands-free)</text>
+    <rect x="62" y="484" width="94" height="26" rx="13" fill="#f1ecff"/>
+    <text x="109" y="502" text-anchor="middle" font-size="12" fill="#5b3fd0">Silero VAD</text>
+    <rect x="170" y="484" width="106" height="26" rx="13" fill="#f1ecff"/>
+    <text x="223" y="502" text-anchor="middle" font-size="12" fill="#5b3fd0">Nemotron ASR</text>
+    <text x="62" y="534" font-size="12" fill="#6b6f8c">auto-cut on a 0.8 s pause</text>
+  </g>
+
+  <!-- connectors into core -->
+  <g stroke-width="2.4" fill="none" marker-end="url(#arrow)">
+    <path d="M290,165 C340,165 350,250 400,268" stroke="#4f8cff"/>
+    <path d="M290,246 C335,246 350,280 400,290" stroke="#22b07d"/>
+    <path d="M290,320 C335,320 350,312 400,312" stroke="#f29a2e"/>
+    <path d="M290,394 C340,394 350,350 400,336" stroke="#e0557e"/>
+    <path d="M290,495 C345,495 355,380 400,358" stroke="#8a5cf6"/>
+  </g>
+
+  <!-- ===== core model (center) ===== -->
+  <g filter="url(#shadow)">
+    <rect x="400" y="140" width="420" height="390" rx="26" fill="url(#core)" stroke="#d9d6ff" stroke-width="1.5"/>
+  </g>
+  <text x="610" y="182" text-anchor="middle" font-size="22" font-weight="800" fill="#2a2178">InternVL3.5-8B</text>
+  <text x="610" y="206" text-anchor="middle" font-size="13" fill="#6b6f8c">"ViT – MLP – LLM"</text>
+
+  <g font-size="14">
+    <rect x="440" y="226" width="340" height="62" rx="14" fill="#e9f1ff"/>
+    <text x="610" y="252" text-anchor="middle" font-weight="700" fill="#1f4fae">InternViT-300M</text>
+    <text x="610" y="273" text-anchor="middle" font-size="12" fill="#5a6488">vision encoder · each frame → 1,024 tokens</text>
+
+    <path d="M610,288 L610,306" stroke="#8b86b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="440" y="308" width="340" height="62" rx="14" fill="#e8f8f1"/>
+    <text x="610" y="334" text-anchor="middle" font-weight="700" fill="#137a52">pixel shuffle + MLP projector</text>
+    <text x="610" y="355" text-anchor="middle" font-size="12" fill="#4f7a68">1,024 → 256 tokens/frame · 8 frames = 2,048 tokens</text>
+
+    <path d="M610,370 L610,388" stroke="#8b86b8" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="440" y="390" width="340" height="70" rx="14" fill="#f3ecff"/>
+    <text x="610" y="418" text-anchor="middle" font-weight="700" fill="#5b3fd0">Qwen3-8B language model</text>
+    <text x="610" y="441" text-anchor="middle" font-size="12" fill="#6a5a99">+ MonteCLoRA adapter (q_proj, v_proj · 0.09% params)</text>
+  </g>
+  <g font-size="12" fill="#5a5f7a">
+    <rect x="440" y="478" width="104" height="30" rx="15" fill="#ffffff" stroke="#e2dfff"/>
+    <text x="492" y="497" text-anchor="middle">Cascade RL</text>
+    <rect x="556" y="478" width="108" height="30" rx="15" fill="#ffffff" stroke="#e2dfff"/>
+    <text x="610" y="497" text-anchor="middle">bf16 · greedy</text>
+    <rect x="676" y="478" width="104" height="30" rx="15" fill="#ffffff" stroke="#e2dfff"/>
+    <text x="728" y="497" text-anchor="middle">1.1 s / answer</text>
+  </g>
+
+  <!-- ===== outputs (right) ===== -->
+  <path d="M820,300 C860,300 870,250 910,240" stroke="#4f8cff" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M820,370 C860,370 870,410 910,420" stroke="#8a5cf6" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="910" y="180" width="250" height="120" rx="16" fill="#ffffff"/>
+    <rect x="910" y="350" width="250" height="140" rx="16" fill="#ffffff"/>
+  </g>
+  <circle cx="938" cy="207" r="6" fill="#4f8cff"/><text x="952" y="212" font-size="15" font-weight="700" fill="#2b2d42">Answer (text)</text>
+  <rect x="932" y="228" width="206" height="48" rx="12" fill="#e8f8f1"/>
+  <text x="1035" y="258" text-anchor="middle" font-size="16" font-weight="600" fill="#137a52">"change tire"</text>
+
+  <circle cx="938" cy="377" r="6" fill="#8a5cf6"/><text x="952" y="382" font-size="15" font-weight="700" fill="#2b2d42">Spoken answer</text>
+  <rect x="932" y="398" width="206" height="28" rx="14" fill="#f1ecff"/>
+  <text x="1035" y="417" text-anchor="middle" font-size="12" fill="#5b3fd0">NVIDIA Magpie TTS (GPU)</text>
+  <text x="932" y="450" font-size="12" fill="#6b6f8c">or Kokoro-82M on CPU</text>
+  <text x="932" y="472" font-size="12" fill="#6b6f8c">mic auto-mutes while it speaks</text>
+
+  <!-- ===== latency strip ===== -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="556" width="860" height="44" rx="22" fill="#ffffff"/>
+  </g>
+  <text x="598" y="584" text-anchor="end" font-size="14" font-weight="700" fill="#3d3f5c">you stop talking → you hear the answer in ~2.9 s</text>
+  <text x="612" y="584" text-anchor="start" font-size="14" fill="#6b6f8c">ASR 59 ms · VLM 1.1 s · TTS 0.9 s · one A40</text>
+</svg>
